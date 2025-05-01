@@ -39,8 +39,6 @@ const LoginDialog: React.FC<Props> = (props: Props) => {
     }
   };
 
-  console.log(payload);
-
   return (
     <>
       <Dialog

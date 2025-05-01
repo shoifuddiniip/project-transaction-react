@@ -5,16 +5,22 @@ import {
   Button,
   Classes,
   Navbar,
-  NavbarDivider,
   NavbarGroup,
   NavbarHeading,
   AnchorButton,
 } from "@blueprintjs/core";
+import NotificationButton from './NotificationButton';
 
 interface Props {
   isSidebarOpen: boolean;
   onToogleSlidebar: () => void;
 }
+
+const notifications = [
+  "Kamu memiliki pesan baru",
+  "Pembaruan sistem tersedia",
+  "Seseorang menyukai komentar kamu",
+];
 
 const NavbarLayout: React.FC<Props> = (props: Props) => {
   const { isSidebarOpen, onToogleSlidebar } = props;
@@ -37,7 +43,9 @@ const NavbarLayout: React.FC<Props> = (props: Props) => {
             <Button className={Classes.MINIMAL} icon="document" text="Files" /> */}
         </NavbarGroup>
         <NavbarGroup align="right">
-          <Button className={Classes.MINIMAL} icon="notifications"/>
+          <div>
+            <NotificationButton />
+          </div>
         </NavbarGroup>
       </Navbar>
     </>
