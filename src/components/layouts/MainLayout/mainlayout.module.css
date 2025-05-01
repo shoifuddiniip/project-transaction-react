@@ -1,0 +1,27 @@
+.root{
+  display: flex;
+  background-color: #F5F8FA;
+  height: 100vh;
+}
+.maincontent {
+  flex: 1;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+.shifted {
+  margin-left: 265px;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -265px;
+  width: 265px;
+  height: 100%;
+  transition: left 0.3s ease-in-out;
+}
+
+.sidebar.open {
+  left: 0;
+}
+

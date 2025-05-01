@@ -1,0 +1,115 @@
+.sidebar {
+  width: 265px;
+  height: 100vh;
+  background-color: #30404D;
+  color: #CED9E0;
+  overflow: auto;
+  transition: width 0.3s ease-in-out;
+}
+
+.open {
+  width: 265px;
+}
+
+.topelement {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 11px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 8px;
+}
+
+.topportal:focus {
+  outline: unset;
+} 
+
+.topportal > div:focus {
+  outline: unset;
+}
+
+.topportal > div > div:focus {
+  outline: unset;
+}
+
+.topbutton:focus {
+  outline: unset;
+}
+
+.topbutton:hover .icon {
+  color: white !important;
+}
+
+.profile {
+  text-align: center;
+  padding: 20px;
+}
+
+.profile > h3 {
+  margin-top: 15px;
+  color: #fff;
+}
+
+.profilephoto {
+  width: 100px;
+  height: 100px;
+}
+
+.profilephoto > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 8px;
+}
+
+.menuitem {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  display: grid;
+  grid-template-columns: 5px 5% 1fr;
+  gap: 10px;
+}
+
+.menuitem:hover {
+  background: linear-gradient(to right, rgba(31, 75, 153, 0.3), rgba(102, 158, 255, 0));
+  cursor: pointer;
+}
+
+.leftbaritem {
+  width: 5px;
+  margin-top: -3px;
+  margin-bottom: -3px;
+}
+
+.menuitem:hover .leftbaritem {
+  background-color: #0E5A8A;
+}
+
+.menuitem:hover .iconitem {
+  color: white;
+}
+
+.menuitem  a {
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  transition: background-color 0.3s;
+  background-color: unset;
+}
+
+.menuitem a:focus {
+  outline: unset;
+}
+
+.menuitem > div:nth-child(2) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 23px;
+}
+
+.buttonitem:hover {
+  background: unset !important;
+  color: white !important;
+}
