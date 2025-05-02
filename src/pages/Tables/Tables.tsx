@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Button, Card, HTMLTable } from "@blueprintjs/core";
 import { useAuth } from "../../contexs/AuthContext";
 import { getAll as getAllTransaction } from "../../service/transction";
+import AddDialog from './AddDialog';
 import moment from "moment";
 
 const BeautyTable: React.FC = () => {
   const { payload } = useAuth();
 
   const [transction, setTransction] = useState<Transaction[]>([]);
+  const [addTransactionDialog, setAddTransactionDialog] = useState(false);
 
   const getToken = (payload?: LoginPayload | null): string =>
     payload?.token ?? "-";
@@ -18,12 +20,24 @@ const BeautyTable: React.FC = () => {
   const token = getToken(payload);
   const user = getUser(payload);
 
+  const getNotifications = async () => {
+    try {
+      const response = await getAllTransaction(token);
+      if (response.status === 200 && Array.isArray(response.data)) {
+        const filter = response.data.filter((obj) => obj.created_by_user_id === user.id);
+        setTransction(filter);
+      }
+    } catch (error) {
+      console.error("Failed to fetch notifications:", error);
+    }
+  };
+
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
         const response = await getAllTransaction(token);
         if (response.status === 200 && Array.isArray(response.data)) {
-          const filter = response.data.filter((obj)=> obj.created_by_user_id === user.id);
+          const filter = response.data.filter((obj) => obj.created_by_user_id === user.id);
           setTransction(filter);
         }
       } catch (error) {
@@ -48,6 +62,7 @@ const BeautyTable: React.FC = () => {
       >
         <Button
           intent="success"
+          onClick={()=>setAddTransactionDialog(true)}
         >ADD</Button>
       </div>
       <Card elevation={2}>
@@ -62,16 +77,23 @@ const BeautyTable: React.FC = () => {
           </thead>
           <tbody>
             {transction.map((item, index) => (
-            <tr>
-              <td>{index + 1}</td>
-              <td>{item.description}</td>
-              <td>{moment(item.created_at).format('YYYY-MM-DD')}</td>
-              <td>{item.action}</td>
-            </tr>
+              <tr>
+                <td>{index + 1}</td>
+                <td>{item.description}</td>
+                <td>{moment(item.created_at).format('YYYY-MM-DD')}</td>
+                <td>{item.action}</td>
+              </tr>
             ))}
           </tbody>
         </HTMLTable>
       </Card>
+      <AddDialog
+        isOpen={addTransactionDialog}
+        onClose={() => {
+          setAddTransactionDialog(false);
+          getNotifications();
+        }}
+      />
     </div>
   );
 };

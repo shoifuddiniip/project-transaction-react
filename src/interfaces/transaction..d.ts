@@ -6,3 +6,9 @@ interface Transaction {
   description: string;
   created_at?: Date | string;
 }
+
+interface TransactionForm {
+  created_by_user_id: number;
+  action: string;
+  description: string;
+}
