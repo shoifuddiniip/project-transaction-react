@@ -66,7 +66,7 @@ const BeautyTable: React.FC = () => {
               <td>{index + 1}</td>
               <td>{item.description}</td>
               <td>{moment(item.created_at).format('YYYY-MM-DD')}</td>
-              <td></td>
+              <td>{item.action}</td>
             </tr>
             ))}
           </tbody>
